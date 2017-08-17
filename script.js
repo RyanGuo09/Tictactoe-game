@@ -2,27 +2,28 @@ var turn = 0;
 var icon = 'X';
 var player = 'Player 1'
 
-
-//clicking event. Switch from X to O and draw the corresponding icon every turn, plus incrementing the turn counter
-$('.piece').click(function(){
-  if($(this).html() === ""){
-    if (turn%2 !== 0) {
-      icon = "O";
-      player = 'Player 2';
-    } else {
-      icon = 'X';
-      player = 'Player 1';
+$( document ).ready(function() {
+  //clicking event. Switch from X to O and draw the corresponding icon every turn, plus incrementing the turn counter
+  $('.piece').click(function(){
+    if($(this).html() === ""){
+      if (turn%2 !== 0) {
+        icon = "O";
+        player = 'Player 2';
+      } else {
+        icon = 'X';
+        player = 'Player 1';
+      }
+      $(this).html(icon);
+      checkWin();
+      turn++
     }
-    $(this).html(icon);
-    checkWin();
-    turn++
-  }
-});
-//restart the game. Maybe better to remove the button and do this with a timer function.
-$('#restart').click(function(){
-  $('.piece').html('');
-  $('.piece').removeClass('won');
-  turn = 0;
+  });
+  //restart the game. Maybe better to remove the button and do this with a timer function.
+  $('#restart').click(function(){
+    $('.piece').html('');
+    $('.piece').removeClass('won');
+    turn = 0;
+  });
 });
 //check if any of the winning possibilities are true
 function checkWin(){
